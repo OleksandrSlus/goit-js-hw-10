@@ -15,6 +15,12 @@ const debouncedFetchCountries = debounce(() => {
   fetchCountries(searchValue)
   .then(countries => {
     renderCountryMarkup(countries);
+  }).catch((err) => {
+    if(err.message === "404") {
+      Notiflix.Notify.failure("Oops, there is no country with that name");
+      InnerHtml = ''
+    }
+    console.log(err)
   })
 }, DEBOUNCE_DELAY);
 
