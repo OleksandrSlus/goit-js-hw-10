@@ -17,7 +17,7 @@ const debouncedFetchCountries = debounce(() => {
     renderCountryMarkup(countries);
   }).catch((err) => {
     if(err.message === "404") {
-      Notiflix.Notify.failure("Oops, there is no country with that name");
+      alert("Not found");
       InnerHtml = ''
     }
     console.log(err)
