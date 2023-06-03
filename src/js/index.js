@@ -1,6 +1,7 @@
 import debounce from "lodash.debounce";
 import { fetchCountries } from "./fetchCountries";
 import { renderCountryMarkup } from "./countryMarkup";
+import Notiflix from "notiflix";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -17,8 +18,11 @@ const debouncedFetchCountries = debounce(() => {
     renderCountryMarkup(countries);
   }).catch((err) => {
     if(err.message === "404") {
-      alert("Not found");
-      InnerHtml = ''
+      Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
+    } else if (countries.length === 0) {
+      Notiflix.Notify.failure("Oops, there is no country with that name");
+    refs.countryList.innerHtml = '';
+    refs.countryInfo.innerHtml = '';
     }
     console.log(err)
   })
