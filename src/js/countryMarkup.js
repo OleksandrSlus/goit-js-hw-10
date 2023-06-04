@@ -11,10 +11,12 @@ export function renderCountryMarkup(countries) {
 
   if (countries.length > 10) {
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-  } else if (countries.length === 0) {
-    Notiflix.Notify.failure("Oops, there is no country with that name");
     refs.countryList.innerHTML = '';
     refs.countryInfo.innerHTML = '';
+  } else if (countries.length === 0) {
+    Notiflix.Notify.failure("Oops, there is no country with that name");
+    // refs.countryList.innerHTML = '';
+    // refs.countryInfo.innerHTML = '';
   } else if (countries.length === 1) {
     const oneCountryMarkup = countries.map(country => `
       <div class="name-flag"> 
